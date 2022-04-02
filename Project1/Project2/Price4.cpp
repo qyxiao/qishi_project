@@ -5,9 +5,9 @@
 
 
 
-Price4:: Price4(const std::string& str) {
+Price4::Price4(const std::string& str) {
 	int decimal_index = -1;
-	for (int i = 0; i<(int)str.size(); i++) {
+	for (int i = 0; i < (int)str.size(); i++) {
 		if (str[i] == '.') {
 			decimal_index = i;
 			break;
@@ -25,10 +25,10 @@ Price4:: Price4(const std::string& str) {
 		unscaled_ = integer_part * 10000 + float_part;
 	}
 	else if (decimal_index == 0) {
-		unscaled_ = stol(str.substr(1, min((int)str.size()-1, 4)))*padding[min((int)str.size() - 1, 4)];
+		unscaled_ = stol(str.substr(1, min((int)str.size() - 1, 4)))*padding[min((int)str.size() - 1, 4)];
 	}
 	else {
-		unscaled_ = stol(str)*10000;
+		unscaled_ = stol(str) * 10000;
 	}
 }
 
