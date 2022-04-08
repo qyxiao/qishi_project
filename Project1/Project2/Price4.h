@@ -49,16 +49,16 @@ private:
 };
 
 
-struct Key
-{
-	std::string first;
-	std::string second;
-	int         third;
-
-	bool operator==(const Key &other) const
-	{
-		return (first == other.first
-			&& second == other.second
-			&& third == other.third);
-	}
-};
+//struct Key
+//{
+//	std::string first;
+//	std::string second;
+//	int         third;
+//
+//	bool operator==(const Key &other) const
+//	{
+//		return (first == other.first
+//			&& second == other.second
+//			&& third == other.third);
+//	}
+//};
