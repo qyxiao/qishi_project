@@ -43,3 +43,8 @@ string Price4::to_str() const {
 	}
 	return unscale_str;
 }
+
+
+const Price4 Price4::MaxVal = Price4(LONG_MAX);
+
+const Price4 Price4::MinVal = Price4(LONG_MIN);

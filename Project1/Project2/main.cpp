@@ -1,6 +1,7 @@
 //#include "Price4.h"
 #include <iostream>
 #include <json.hpp>
+#include "Publisher.h"
 
 using json = nlohmann::json;
 

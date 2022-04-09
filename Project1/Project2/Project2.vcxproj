@@ -129,8 +129,13 @@
     <ClCompile Include="Price4.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Loader.cpp" />
+    <ClCompile Include="OrderBook.cpp" />
+    <ClCompile Include="MatchEngine.cpp" />
+    <ClCompile Include="Publisher.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Publisher.h" />
+    <ClInclude Include="OrderBook.h" />
     <ClInclude Include="Loader.h" />
     <ClInclude Include="MatchEngine.h" />
     <ClInclude Include="Order.h" />

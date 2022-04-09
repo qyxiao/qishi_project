@@ -18,6 +18,10 @@ public:
 
 	Price4(const Price4& price) : Price4(price.unscaled_) {}
 
+	static const Price4 MaxVal;
+
+	static const Price4 MinVal;
+
 	bool operator==(const Price4 &that) const
 	{
 		return this->unscaled() == that.unscaled();
@@ -49,16 +53,23 @@ private:
 };
 
 
-//struct Key
-//{
-//	std::string first;
-//	std::string second;
-//	int         third;
-//
-//	bool operator==(const Key &other) const
-//	{
-//		return (first == other.first
-//			&& second == other.second
-//			&& third == other.third);
-//	}
-//};
+namespace std {
+
+	template <>
+	struct hash<Price4>
+	{
+		std::size_t operator()(const Price4& k) const
+		{
+			using std::size_t;
+			using std::hash;
+			using std::string;
+
+			// Compute individual hash values for first,
+			// second and third and combine them using XOR
+			// and bit shifting:
+
+			return  hash<long>()(k.unscaled());
+		}
+	};
+
+}
