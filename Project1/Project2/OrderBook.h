@@ -5,6 +5,7 @@
 #include "Price4.h"
 #include <list>
 #include <unordered_map>
+#include "TransactionMsg.h"
 
 typedef list<Order>::iterator loiter;
 
@@ -15,6 +16,8 @@ class OrderBook {
 	unordered_map<int, pair<loiter, list<loiter>::iterator>> id_order_ab;
 	list<Order> order_pool;
 	unordered_map<Price4, int> price_quantity;
+	TransactionMsg* messenger;
+
 public:
 	OrderBook() = default;
 	OrderBook(string symbol):symbol(symbol){}

@@ -132,8 +132,10 @@
     <ClCompile Include="OrderBook.cpp" />
     <ClCompile Include="MatchEngine.cpp" />
     <ClCompile Include="Publisher.cpp" />
+    <ClCompile Include="TransactionMsg.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="TransactionMsg.h" />
     <ClInclude Include="Publisher.h" />
     <ClInclude Include="OrderBook.h" />
     <ClInclude Include="Loader.h" />

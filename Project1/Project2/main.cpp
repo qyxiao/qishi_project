@@ -5,13 +5,15 @@
 #include "Loader.h"
 #include "MatchEngine.h"
 #include "Publisher.h"
+#include "TransactionMsg.h"
 
 using json = nlohmann::json;
 using namespace std;
 
 int main() {
 
-	Publisher pb = Publisher("pretty.json");
+	TransactionMsg tm = TransactionMsg();
+	Publisher pb = Publisher("pretty.json", &tm);
 	vector<string> msg = { "1", "2", "3", "4", "5" };
 	pb.deliver_msg(msg);
 
