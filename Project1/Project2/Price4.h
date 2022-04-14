@@ -47,6 +47,9 @@ public:
 		return this->unscaled() >= that.unscaled();
 	}
 
+	void operator=(const std::string& s) { unscaled_ = stol(s); }
+
+
 private:
 	static constexpr array<int, 5> padding{ 10000, 1000, 100, 10, 1 };
 	long unscaled_;

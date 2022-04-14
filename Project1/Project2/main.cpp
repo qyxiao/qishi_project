@@ -12,10 +12,17 @@ using namespace std;
 
 int main() {
 
-	TransactionMsg tm = TransactionMsg();
+	/*TransactionMsg tm = TransactionMsg();
 	Publisher pb = Publisher("pretty.json", &tm);
 	vector<string> msg = { "1", "2", "3", "4", "5" };
-	pb.deliver_msg(msg);
+	pb.deliver_msg(msg);*/
+
+	TransactionMsg tm = TransactionMsg();
+	Publisher pb = Publisher("out_msg.json", &tm);
+	MatchEngine engine = MatchEngine(&pb);
+	Loader loda = Loader({&engine});
+	loda.process_orders("in_msg.json");
+
 
 	//json j = {
  // {"pi", 3.141},

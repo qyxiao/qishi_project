@@ -1,6 +1,8 @@
 #pragma once
 #include "Price4.h"
 #include <string>
+#include <iostream>
+
 class Order {
 	long time;
 	string type;
@@ -31,9 +33,17 @@ public:
 		return symbol;
 	}
 
-	void minus_quantity(int quant) {
-		quantity -= quant;
-		quantity = max(quantity, 0);
+	void set_quantity(int quant) {
+		quantity = quant;
 	}
+
+	void subtract_quantity(int quant) {
+		quantity -= quant;
+	}
+
+	void print_content() {
+		cout << time << ", " << type << ", " << order_id << ", " << symbol << ", " << side << ", " << quantity << "," <<limit_price.to_str() <<endl;
+	}
+
 
 };

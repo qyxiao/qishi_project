@@ -1,9 +1,20 @@
 #include "TransactionMsg.h"
 
 
-vector<string> TransactionMsg::msg_generator(Order order) {
-	vector<string> result;
-	return result;
+void TransactionMsg::msg_generator(vector<string>& msg, Order& order) {
+	msg.push_back(to_string(order.get_order_id()));
+	msg.push_back(to_string(order.get_quantity()));
+	msg.push_back(order.get_type());
+	msg.push_back(order.get_price().to_str());
+}
+
+
+void TransactionMsg::msg_modifier(vector<string>& msg, Order& order) {
+	msg.push_back(to_string(order.get_order_id()));
+	//msg.push_back(time);
+	msg.push_back(order.get_price().to_str());
+	msg.push_back(order.get_symbol());
+
 }
 
 
