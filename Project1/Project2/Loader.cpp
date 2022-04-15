@@ -22,6 +22,7 @@ void Loader::process_orders(string filepath) {
 		j = json::parse(line);
 		Order od = Order(j["Time"], j["Type"], j["OrderId"], j["Symbol"], j["Side"], j["Quantity"], Price4(j["Price"]));
 		od.print_content();
+		engines[0]->handle_order(od);
 	}
 }
 

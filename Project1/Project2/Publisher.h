@@ -2,7 +2,7 @@
 #include <json.hpp>
 #include <string>
 #include "TransactionMsg.h"
-
+#include <list>
 
 using namespace std;
 
@@ -12,5 +12,8 @@ class Publisher {
 
 public:
 	Publisher(string fp, TransactionMsg* tm):file_path(fp), messenger(tm){}
-	void deliver_msg(vector<string>& transactions);
+	void deliver_msg(list<string>& transactions);
+	TransactionMsg* get_messenger() {
+		return messenger;
+	}
 };

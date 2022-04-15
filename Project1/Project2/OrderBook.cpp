@@ -8,8 +8,8 @@ int OrderBook::get_quantity(Price4 price) {
 }
 
 
-vector<string> OrderBook::ask_price_quantity(Price4 price, int quantity) {
-	vector<string> result;
+list<string> OrderBook::ask_price_quantity(Price4 price, int quantity) {
+	list<string> result;
 	while (asks[price].size() > 0 && quantity > 0) {
 		auto pq = asks[price].front();
 		if ((*pq).get_quantity() <= quantity) {
@@ -37,8 +37,8 @@ vector<string> OrderBook::ask_price_quantity(Price4 price, int quantity) {
 
 
 
-vector<string> OrderBook::bid_price_quantity(Price4 price, int quantity) {
-	vector<string> result;
+list<string> OrderBook::bid_price_quantity(Price4 price, int quantity) {
+	list<string> result;
 	while (bids[price].size() > 0 && quantity > 0) {
 		auto pq = bids[price].front();
 		if ((*pq).get_quantity() <= quantity) {
@@ -71,7 +71,7 @@ void OrderBook::add_pool(Order& order) {
 	int quantity = order.get_quantity();
 	price_quantity[price] += quantity;
 	order_pool.push_back(order);
-	if (order.get_type() == "bid") {
+	if (order.get_side() == "Bid") {
 		bids[price].push_back(--order_pool.end());
 		id_order_ab[order.get_order_id()] = make_pair(--order_pool.end(), --bids[price].end());
 	}
@@ -91,7 +91,7 @@ void OrderBook::cancel_pool(Order& order) {
 	}
 	auto iters = id_order_ab[id];
 	Price4 price = order.get_price();
-	if (order.get_type() == "bid") {
+	if (order.get_side() == "Bid") {
 		bids[price].erase(iters.second);
 	}
 	else {

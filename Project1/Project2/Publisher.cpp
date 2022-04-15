@@ -6,6 +6,10 @@
 
 using json = nlohmann::json;
 
-void Publisher::deliver_msg(vector<string>& transactions) {
+void Publisher::deliver_msg(list<string>& transactions) {
 	messenger->msg_reader(transactions, file_path);
+	for (auto str : transactions) {
+		cout << str << ", ";
+	}
+	cout << endl;
 }

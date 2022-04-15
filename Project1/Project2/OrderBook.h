@@ -20,10 +20,10 @@ class OrderBook {
 
 public:
 	OrderBook() = default;
-	OrderBook(string symbol):symbol(symbol){}
+	OrderBook(string symbol, TransactionMsg* messenger):symbol(symbol), messenger(messenger){}
 	int get_quantity(Price4 price);
-	vector<string> bid_price_quantity(Price4 price, int quantity); 
-	vector<string> ask_price_quantity(Price4 price, int quantity); 
+	list<string> bid_price_quantity(Price4 price, int quantity); 
+	list<string> ask_price_quantity(Price4 price, int quantity); 
 	void add_pool(Order& order);
 	void cancel_pool(Order& order);
 	Price4 top_ask() {

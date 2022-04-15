@@ -33,6 +33,10 @@ public:
 		return symbol;
 	}
 
+	string get_side() {
+		return side;
+	}
+
 	void set_quantity(int quant) {
 		quantity = quant;
 	}
