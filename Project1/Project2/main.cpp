@@ -12,39 +12,12 @@ using namespace std;
 
 int main() {
 
-	/*TransactionMsg tm = TransactionMsg();
-	Publisher pb = Publisher("pretty.json", &tm);
-	vector<string> msg = { "1", "2", "3", "4", "5" };
-	pb.deliver_msg(msg);*/
-
 	TransactionMsg tm = TransactionMsg();
 	Publisher pb = Publisher("out_msg.json", &tm);
-	MatchEngine engine = MatchEngine(&pb);
-	Loader loda = Loader({&engine});
+	MatchEngine engine1 = MatchEngine(&pb);
+	MatchEngine engine2 = MatchEngine(&pb);
+	Loader loda = Loader({&engine1, &engine2});
 	loda.process_orders("in_msg.json");
 
-
-	//json j = {
- // {"pi", 3.141},
- // {"happy", true},
- // {"name", "Niels"},
- // {"nothing", nullptr},
- // {"answer", {
-	//{"everything", 42}
- // }},
- // {"list", {1, 0, 2}},
- // {"object", {
-	//{"currency", "USD"},
-	//{"value", 42.99}
- // }}
-	//};
-
-	//ofstream outs("pretty.json");
-
-	//outs << j << std::endl;
-
-	//ofstream outs2("pretty.json", fstream::app);
-	//outs2 << j << std::endl;
-    
 	return 0;
 }

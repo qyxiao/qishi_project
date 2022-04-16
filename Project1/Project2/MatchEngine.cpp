@@ -2,16 +2,42 @@
 #include <string>
 #include "Price4.h"
 
-list<string> MatchEngine::handle_order(Order order) {
+//list<string> MatchEngine::handle_order(Order order) {
+//	string symbol = order.get_symbol();
+//	//list<string> result;
+//	if (order.get_type() == "Cancel") {
+//		return handel_cancel(order);
+//	}else if(order.get_side() == "Bid"){
+//		return handel_bid(order);
+//	}else {
+//		return handel_ask(order);
+//	}
+//}
+
+list<string> MatchEngine::handle_order(Order order, unsigned int local_id, std::atomic<unsigned int>& global_id) {
 	string symbol = order.get_symbol();
-	//list<string> result;
-	if (order.get_type() == "Cancel") {
-		return handel_cancel(order);
-	}else if(order.get_side() == "Bid"){
-		return handel_bid(order);
-	}else {
-		return handel_ask(order);
+    //lock for serialization 
+	while (local_id != global_id.load()) {
+		auto future = async(launch::async, []()
+		{
+			std::this_thread::sleep_for(chrono::microseconds{ 1000 });
+		});
 	}
+	
+	list<string> result;
+	cout << "begin "<<order.get_order_id() << endl;
+	if (order.get_type() == "Cancel") {
+		result = handel_cancel(order);
+	}
+	else if (order.get_side() == "Bid") {
+		result = handel_bid(order);
+	}
+	else {
+		result = handel_ask(order);
+	}
+	cout << "finish " << order.get_order_id() << endl;
+	global_id.store(global_id.load() + 1);
+	return result;
 }
 
 list<string> MatchEngine::handel_cancel(Order& order) {
@@ -44,9 +70,6 @@ list<string> MatchEngine::handel_ask(Order& order) {
 		OB->add_pool(order);
 	}
 	return result;
-	//if (result.size() > 0) {
-	//	to_publish(result);
-	//}
 }
 
 
@@ -70,9 +93,6 @@ list<string> MatchEngine::handel_bid(Order& order) {
 		OB->add_pool(order);
 	}
 	return result;
-	//if (result.size() > 0) {
-	//	to_publish(result);
-	//}
 }
 
 
