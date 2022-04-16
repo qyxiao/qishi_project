@@ -30,11 +30,4 @@ void TransactionMsg::msg_reader(list<string>& transactions, string file_path) {
 		//json_str["Time"] = *msg_ptr++;
 		outs << json_str << std::endl;
 	}
-	/*for (int i = 0; i < (int)transactions.size(); i += 5) {
-
-		json json_str = { {"Order ID", transactions[i]}, {"Symbol", transactions[i + 1]},
-		{"Price", transactions[i + 2]}, {"Order Type", transactions[i + 3]}, {"Time", transactions[i + 4]} };
-
-		outs << json_str << std::endl;
-	}*/
 }

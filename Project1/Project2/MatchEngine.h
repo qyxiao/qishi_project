@@ -8,13 +8,13 @@
 class MatchEngine {
 	unordered_map<string, OrderBook> symbol_OrderBook;
 	Publisher* publisher;
-	void handel_bid(Order& order);
-	void handel_ask(Order& order);
-	void handel_cancel(Order& order);
+	list<string> handel_bid(Order& order);
+	list<string> handel_ask(Order& order);
+	list<string> handel_cancel(Order& order);
 	TransactionMsg* messenger;
 public:
 	MatchEngine(Publisher* publisher) :publisher(publisher) { messenger = publisher->get_messenger(); }
-	void handle_order(Order& order);
-	void to_publish(list<string>& transactions);
-
+	list<string> handle_order(Order order);
+	//void to_publish(list<string>& transactions);
+	Publisher* get_publisher() { return publisher; }
 };
